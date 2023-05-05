@@ -1,0 +1,35 @@
+@use "../../../sass/abstracts" as *;
+.erreur {
+    display: grid;
+    place-content: center;
+    height: 100%;
+    text-align: center;
+    gap: 8.375rem;
+    padding: clamp(2rem, 5vw,3.625rem);
+    @include md {
+        gap: 11.5rem;
+        padding-bottom: 10rem;
+    }
+}
+.text {
+    display: grid;
+    h1 {
+        font-size: var(--fs-mobile-800);
+        @include md {
+            font-size: var(--fs-desktop-800);
+        }
+    }
+    sub {
+        font-size: var(--fs-mobile-600);
+        @include md {
+            font-size: var(--fs-desktop-600);
+        }
+    }
+    @include md {
+        gap: 4.125rem;
+    }
+}
+.link {
+    font-size: var(--fs-mobile-500);
+    text-decoration: underline;
+}
