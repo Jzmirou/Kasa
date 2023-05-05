@@ -1,0 +1,12 @@
+@use "../../../sass/abstracts" as *;
+.avatar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: #ddd;
+    overflow: hidden;
+    @include md {
+        height: 4rem;
+        width: 4rem;
+    }
+}

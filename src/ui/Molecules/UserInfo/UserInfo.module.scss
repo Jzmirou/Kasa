@@ -1,0 +1,10 @@
+.userInfo {
+    display: flex;
+    gap: 0.625rem;
+    align-items: center;
+}
+.name {
+    text-align: right;
+    font-weight: 500;
+    text-transform: capitalize;
+}

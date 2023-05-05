@@ -1,0 +1,19 @@
+@use "../../../sass/abstracts" as *;
+
+.badge {
+    color: var(--text-white, #fff);
+    display: grid;
+    place-content: center;
+    width: 5.25rem;
+    padding:0.175rem  ;
+    text-align: center;
+    min-height: 1.125rem;
+    background-color: var(--color-primary, #FF6060);
+    border-radius: var(--br-200, 0.3125rem);
+    font-size: var(--fs-mobile-300, 0.625rem);
+    @include md {
+        width: 7.25rem;
+        min-height: 1.625rem;
+        font-size: var(--fs-desktop-300);
+    }
+}

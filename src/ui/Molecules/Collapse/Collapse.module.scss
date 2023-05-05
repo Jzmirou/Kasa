@@ -1,0 +1,63 @@
+@use "../../../sass/abstracts" as *;
+.collapse {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+}
+.collapseHeader {
+    display: flex;
+    background: var(--color-primary, #FF6060);
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 0.75rem;
+    border-radius: var(--br-200, 0.3125rem);
+    min-height: 1.875rem ;
+
+    cursor: pointer;
+    @include md {
+        min-height: 3.25rem ;
+    }
+}
+.title {
+    color: var(--text-white, #ffffff);
+    font-size: var(--fs-mobile-400);
+    font-weight: 500;
+    @include md {
+        font-size: var(--fs-desktop-400);
+    }
+}
+.button {
+    cursor: pointer;
+    width: 1rem;
+    transition: transform 0.3s ease-in-out; 
+    > * {
+        display: block;
+        width: 100%;
+    }
+    @include md {
+        width: 1.5rem;
+    }
+}
+.buttonActive {
+    transform: rotateX(180deg);
+}
+
+.collapseBody {
+    border-radius: 0 0 var(--br-200) var(--br-200);
+    background: var(--bg-light, #f6f6f6) ;
+    overflow: hidden;
+    transition: all 0.5s ;
+    max-height: 0;
+    p {
+        padding: 0.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.125rem;
+        @include md {
+            gap: 0.325rem;
+            padding: 1.875rem 1.25rem;
+        }
+    }
+    
+}

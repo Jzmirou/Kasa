@@ -1,0 +1,20 @@
+@use "../../../sass/abstracts" as *;
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    @include md {
+        gap: 3.5625rem;
+    }   
+}
+
+.navItem {
+    text-transform: uppercase;
+    &:hover {
+        text-decoration: underline;
+        text-underline-offset: 0.325rem
+    }
+    @include md {
+        text-transform: capitalize;
+    }
+}
