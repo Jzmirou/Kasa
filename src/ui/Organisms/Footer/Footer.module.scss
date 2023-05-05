@@ -1,0 +1,14 @@
+.footer {
+    background: #000;
+    height: 13rem;
+    display: grid;
+    place-content: center;
+    place-items: center;
+    gap: 1.75rem
+}
+.logo {
+    width: 7.75rem;
+}
+.text {
+    color: var(--text-white, #ffffff);
+}

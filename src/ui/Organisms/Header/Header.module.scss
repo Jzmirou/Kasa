@@ -1,0 +1,20 @@
+@use "../../../sass/abstracts" as *;
+@use "../../../sass/utilities" as *;
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding-block: 1.25rem;
+    @include container;
+    @include md {
+        padding-block: 2.5rem ;
+    }
+}
+
+.logo {
+    width: 145px;
+    @include md {
+        width: 210px;
+    }
+}

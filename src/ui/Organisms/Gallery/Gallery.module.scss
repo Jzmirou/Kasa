@@ -1,0 +1,17 @@
+@use "../../../sass/abstracts" as *;
+.gallery {
+    display: grid;
+    gap: 1.25rem;
+    @include md {
+        gap: 3.75rem;
+        padding: 3.5rem;
+        background: var(--bg-light, #f6f6f6);
+        border-radius: var(--br-600, 1.5rem);
+    }
+    @include lg {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @include xl {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
