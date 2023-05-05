@@ -47,10 +47,18 @@ npm start
 
 -   **Primaire:** #FF6060 ![#FF6060](https://placehold.co/20x20/ff6060/ff6060.png)
 <br>
+
+## **Maquettes** :
+
+Lien des maquettes : https://www.figma.com/file/bAnXDNqRKCRRP8mY2gcb5p/UI-Design-Kasa-FR?node-id=4%3A1
+
 ## **Ressources utilisées** ##
 
 * [Visual Studio Code](https://code.visualstudio.com/) - Editeur de codes
+* [Create React App](https://create-react-app.dev/) - Boîte à outils créée par Facebook, qui est la référence pour initier un projet React
+* [React Router V6](https://reactrouter.com/) - Bibliothèque de routage pour React
 * [Prop-types](https://github.com/facebook/prop-types) - Checker de props pour React
+
 
 ## **Auteurs**
 
