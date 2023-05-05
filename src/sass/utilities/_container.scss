@@ -1,0 +1,9 @@
+@use "../abstracts" as *;
+
+@mixin container { 
+    max-width: 120rem;
+    margin-inline: 1.25rem;
+    @include md {
+        margin-inline: 6.25rem;
+    }
+}
