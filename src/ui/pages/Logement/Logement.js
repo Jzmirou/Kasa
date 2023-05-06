@@ -1,5 +1,5 @@
-import React from "react";
-import { useLoaderData } from "react-router-dom";
+import React, { Suspense } from "react";
+import { Await, defer, useLoaderData } from "react-router-dom";
 import { getLogementById } from "../../../helper/api";
 import { cacheLogement } from "../../../helper/cacheLogement";
 import { Carousel } from "../../Organisms/Carousel/Carousel";
@@ -8,6 +8,7 @@ import { Rating } from "../../Molecules/Rating/Rating";
 import { UserInfo } from "../../Molecules/UserInfo/UserInfo";
 import { LogementTags } from "../../Molecules/LogementTags/LogementTags";
 import styles from "./Logement.module.scss";
+import { Erreur404 } from "../Erreur404/Erreur404";
 
 /**
  * La fonction Logement renvoie un composant qui affiche des informations sur un logement, notamment
@@ -19,35 +20,44 @@ import styles from "./Logement.module.scss";
  * données de ce composant sont obtenues via le hook `useLoaderData`.
  */
 export const Logement = () => {
+    const { updateCache } = cacheLogement();
     const logementData = useLoaderData();
     return (
-        <div className={styles.logement}>
-            <Carousel images={logementData.pictures} />
-            <div className={styles.logementBody}>
-                <div className={styles.logementInfo}>
-                    <div className={styles.titleContainer}>
-                        <h1 className={styles.title}>{logementData.title}</h1>
-                        <sub className={styles.subtitle}>{logementData.location}</sub>
+        <Suspense fallback={<p>Loading...</p>}>
+            <Await resolve={logementData.data} errorElement={<Erreur404/>}>
+                {(logementData) => {
+                    updateCache(logementData, logementData.id)
+                    return (
+                        <div className={styles.logement}>
+                        <Carousel images={logementData.pictures} />
+                        <div className={styles.logementBody}>
+                            <div className={styles.logementInfo}>
+                                <div className={styles.titleContainer}>
+                                    <h1 className={styles.title}>{logementData.title}</h1>
+                                    <sub className={styles.subtitle}>{logementData.location}</sub>
+                                </div>
+                                <LogementTags tags={logementData.tags} />
+                            </div>
+                            <div className={styles.rateAndUser}>
+                                <Rating rate={logementData.rating} />
+                                <UserInfo name={logementData.host.name} userImage={logementData.host.picture} />
+                            </div>
+                            <div className={styles.logementCollapse}>
+                                <Collapse title={"Description"}>{logementData.description}</Collapse>
+                                <Collapse title={"Équipements"}>
+                                    {logementData?.equipments?.map((element, index) => (
+                                        <li key={index}>{element}</li>
+                                    ))}
+                                </Collapse>
+                            </div>
+                        </div>
                     </div>
-                    <LogementTags tags={logementData.tags} />
-                </div>
-                <div className={styles.rateAndUser}>
-                    <Rating rate={logementData.rating} />
-                    <UserInfo name={logementData.host.name} userImage={logementData.host.picture} />
-                </div>
-                <div className={styles.logementCollapse}>
-                    <Collapse title={"Description"}>{logementData.description}</Collapse>
-                    <Collapse title={"Équipements"}>
-                        {logementData?.equipments?.map((element, index) => (
-                            <li key={index}>{element}</li>
-                        ))}
-                    </Collapse>
-                </div>
-            </div>
-        </div>
+                    )
+                }}
+            </Await>
+        </Suspense>
     );
 };
-
 
 /**
  * Cette fonction vérifie si les données sont déjà en cache et les renvoie, sinon elle récupère les
@@ -57,15 +67,16 @@ export const Logement = () => {
  * les renvoie. Les données renvoyées sont liées à un logement (qui peut être une maison, un
  * appartement ou un autre type de logement) en fonction du paramètre "id" passé au
  */
-export const loader = async  ({ params , request}) => {
+export const loader = async ({ params, request }) => {
     const { cache } = cacheLogement();
     if (cache.has(params.id)) {
-        console.log('data used cache')
-        return cache.get(params.id);
+        console.log("data used cache");
+        const data = cache.get(params.id);
+        return {data: data}
     }
-    const data = await getLogementById(params.id,{
-        signal: request.signal
+    const data = getLogementById(params.id, {
+        signal: request.signal,
     });
-    console.log('data used non cache')
-    return data;
+    console.log("data used non cache");
+    return defer({data: data});
 };

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Suspense } from "react";
 import styles from "./Gallery.module.scss";
 import { Card } from "../../Molecules/Card/Card";
 import { cacheLogement } from "../../../helper/cacheLogement";
-import { useLoaderData } from "react-router-dom";
+import { defer, useLoaderData, Await } from "react-router-dom";
 import { getAllLogement } from "../../../helper/api";
 
 /**
@@ -14,13 +14,23 @@ import { getAllLogement } from "../../../helper/api";
  * valeur de `i`, une prop `href`
  */
 export const Gallery = () => {
+    const {updateCache} = cacheLogement();
     const logementData = useLoaderData();
     return (
-        <div className={styles.gallery}>
-            {logementData.map((logement, i) => {
-                return <Card key={i} href={`logement/${logement.id}`} imageUrl={logement.cover} text={logement.title} />;
-            })}
-        </div>
+        <Suspense fallback={<p>Loading...</p>}>
+            <Await resolve={logementData.data} errorElement={<p>Error</p>}>
+                {(logementData) => {
+                        updateCache(logementData);
+                    return (
+                        <div className={styles.gallery}>
+                            {logementData.map((logement, i) => {
+                                return <Card key={i} href={`logement/${logement.id}`} imageUrl={logement.cover} text={logement.title} />;
+                            })}
+                        </div>
+                    );
+                }}
+            </Await>
+        </Suspense>
     );
 };
 
@@ -31,20 +41,19 @@ export const Gallery = () => {
  * le cache, il renvoie les données mises en cache, sinon il récupère les données à l'aide de la
  * fonction `getAllLogement` et met à jour le cache avant de renvoyer les données récupérées.
  */
-export const loader = async ({ request, params }) => {
-    const { cache, updateCache } = cacheLogement();
-    if (cache.size > 0) {
+export const loader = ({ request }) => {
+    const { cache } = cacheLogement();
+    if (cache.size > 1) {
         const data = [];
         cache.forEach((value) => {
             data.push(value)
         });
-        console.log('data Cached')
-        return data
+        console.log('data used cache')
+        return {data: data}
     }
-    const data = await getAllLogement({
-        signal: request.signal
+    const data = getAllLogement({
+        signal: request.signal,
     });
-    updateCache(data);
-    console.log('non cache')
-    return data;
+    console.log("data used non cache");
+    return defer({ data: data });
 };

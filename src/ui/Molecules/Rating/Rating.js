@@ -13,8 +13,6 @@ import PropTypes from "prop-types"
  * inférieur à `rate`, et un vide
  */
 export const Rating = ({ rate, maxRate = 5 }) => {
-
-    console.log(typeof rate)
     return (
         <div className={styles.rating}>
             {[...new Array(maxRate)].map((arr, i) => {

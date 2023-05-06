@@ -5,6 +5,7 @@ import { Home } from "./ui/pages/Home/Home";
 import { Logement, loader as logementLoader } from "./ui/pages/Logement/Logement";
 import { Gallery , loader as galleryLoader} from "./ui/Organisms/Gallery/Gallery";
 import { Layout } from "./ui/Layout/Layout";
+import { Suspense } from "react";
 
 /* Ce code crée un routeur en utilisant la fonction `createBrowserRouter` de la bibliothèque
 `react-router-dom`. Le routeur est défini à l'aide de la syntaxe JSX et se compose de plusieurs
@@ -15,7 +16,8 @@ export const router = createBrowserRouter(
     createRoutesFromElements(
         <Route element={<Layout />} >
             <Route path="/" element={<Home />}>
-                <Route index element={<Gallery />} loader={galleryLoader} />
+                <Route index element={<Gallery />} 
+                loader={galleryLoader} />
             </Route>
             <Route path="/logement/:id" element={<Logement />} errorElement={<Erreur404/>}  loader={logementLoader} />
             <Route path="/about" element={<About />} />
