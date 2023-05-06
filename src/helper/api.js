@@ -59,5 +59,5 @@ export const getLogementById = async (id, option) => {
     const response = await fetchJson(option)
     const data = response.find((logement) => logement.id === id);
     if (!data) throw new Response("Not Found", {status: 400})
-    return 
+    return data
 };
