@@ -1,5 +1,4 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
-// import { Erreur404 } from "./ui/pages/Erreur404/Erreur404";
 import { loader as logementLoader } from "./ui/pages/Logement/Logement";
 import { Gallery, loader as galleryLoader } from "./ui/Organisms/Gallery/Gallery";
 import { Layout } from "./ui/Layout/Layout";
