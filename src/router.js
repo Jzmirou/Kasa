@@ -1,10 +1,14 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
-import { loader as logementLoader } from "./ui/pages/Logement/Logement";
+import { loader as logementLoader, LogementLoading } from "./ui/pages/Logement/Logement";
 import { Gallery, loader as galleryLoader } from "./ui/Organisms/Gallery/Gallery";
 import { Layout } from "./ui/Layout/Layout";
 import { Suspense, lazy } from "react";
 import { LoadingSpinner } from "./ui/Atoms/LoadingSpinner/LoadingSpinner";
 import { stop } from "./helper/api";
+import { HomeLoading } from "./ui/pages/Home/Home";
+import { AboutLoading } from "./ui/pages/About/About";
+
+
 
 /* Ce code définit les routes pour une application React à l'aide de la bibliothèque
 `react-router-dom`. Il utilise la fonction "paresseux" pour charger de manière asynchrone les
@@ -15,27 +19,50 @@ chaque route. Le composant `Suspense` est utilisé pour afficher un spinner de c
 chargement du composant. La fonction `createBrowserRouter` crée l'objet routeur qui peut être
 utilisé pour naviguer entre les différentes routes. */
 
+
+// const Home = lazy(() =>
+//     import("./ui/pages/Home/Home").then((module) => {
+//         return {
+//             default: module.Home,
+//         };
+//     })
+// );
+// const Logement = lazy(() =>
+//     import("./ui/pages/Logement/Logement").then((module) => {
+//         return {
+//             default: module.Logement,
+//         };
+//     })
+// );
+
 const Home = lazy(() =>
-    import("./ui/pages/Home/Home").then((module) => {
+    stop(0.8).then(() => import("./ui/pages/Home/Home").then((module) => {
         return {
             default: module.Home,
         };
-    })
+    }))
 );
 const Logement = lazy(() =>
-    import("./ui/pages/Logement/Logement").then((module) => {
+    stop(0.8).then(() => import("./ui/pages/Logement/Logement").then((module) => {
         return {
             default: module.Logement,
         };
-    })
+    }))
 );
 const About = lazy(() =>
-    import("./ui/pages/About/About").then((module) => {
+    stop(0.8).then(() => import("./ui/pages/About/About").then((module) => {
         return {
             default: module.About,
         };
-    })
+    }))
 );
+// const About = lazy(() =>
+//     import("./ui/pages/About/About").then((module) => {
+//         return {
+//             default: module.About,
+//         };
+//     })
+// );
 const Erreur404 = lazy(() =>
     import("./ui/pages/Erreur404/Erreur404").then((module) => {
         return {
@@ -50,7 +77,7 @@ export const router = createBrowserRouter(
             <Route
                 path="/"
                 element={
-                    <Suspense fallback={<LoadingSpinner />}>
+                    <Suspense fallback={<HomeLoading />}>
                         <Home />
                     </Suspense>
                 }
@@ -60,7 +87,7 @@ export const router = createBrowserRouter(
             <Route
                 path="/logement/:id"
                 element={
-                    <Suspense fallback={<LoadingSpinner />}>
+                    <Suspense fallback={<LogementLoading/>}>
                         <Logement />
                     </Suspense>
                 }
@@ -70,7 +97,7 @@ export const router = createBrowserRouter(
             <Route
                 path="/about"
                 element={
-                    <Suspense fallback={<LoadingSpinner />}>
+                    <Suspense fallback={<AboutLoading />}>
                         <About />
                     </Suspense>
                 }

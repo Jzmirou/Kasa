@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Rating.module.scss";
 import { ReactComponent as Star } from "../../../assets/icons/star.svg";
 import colorsVar from "../../../sass/abstracts/_colors.module.scss";
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 
 /**
  * Il s'agit d'un composant React qui rend un système de notation avec des étoiles, où le nombre
@@ -31,9 +31,9 @@ export const Rating = ({ rate, maxRate = 5 }) => {
 };
 
 Rating.propTypes = {
-    rate: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string
-    ]).isRequired,
-    maxRate: PropTypes.number
-}
+    rate: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    maxRate: PropTypes.number,
+};
+export const RatingLoading = () => {
+    return <div className={styles.ratingLoading}></div>;
+};

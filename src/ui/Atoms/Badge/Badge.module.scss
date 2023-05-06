@@ -1,5 +1,11 @@
 @use "../../../sass/abstracts" as *;
 
+@keyframes shine {
+    to {
+        background-position-x: -200%;
+    }
+}
+
 .badge {
     color: var(--text-white, #fff);
     display: grid;
@@ -8,7 +14,7 @@
     padding:0.175rem  ;
     text-align: center;
     min-height: 1.125rem;
-    background-color: var(--color-primary, #FF6060);
+    background: var(--color-primary, #FF6060);
     border-radius: var(--br-200, 0.3125rem);
     font-size: var(--fs-mobile-300, 0.625rem);
     @include md {
@@ -16,4 +22,17 @@
         min-height: 1.625rem;
         font-size: var(--fs-desktop-300);
     }
+}
+.badgeLoading {
+    width: 5.25rem;
+    height: 1.125rem;
+    border-radius: var(--br-200, 0.3125rem);
+    background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+    background-size: 200% 100%;
+    animation: 1s shine linear infinite;
+    @include md {
+        width: 7.25rem;
+        height: 1.625rem;
+    }
+
 }

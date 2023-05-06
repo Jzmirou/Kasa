@@ -9,29 +9,33 @@ import { Link } from "react-router-dom";
  * `href` est vrai, il renvoie un composant `Link` avec le composant `CardContent` comme enfant. Si
  * `href` est faux, il renvoie un `div` avec le composant `CardContent` comme enfant.
  */
-export const Card = ({ imageUrl, text, href }) => {
+export const Card = ({ imageUrl, text, href, loading = false}) => {
     const isLink = href
     return isLink ? (
-        <Link to={href} className={styles.card}>
+        <Link to={href} className={`${styles.card} ${loading ? styles.cardLoading : ''}`}>
           <CardContent imageUrl={imageUrl} text={text} />
         </Link>
     ) : (
-      <div className={styles.card}>
+      <div className={`${styles.card} ${loading ? styles.cardLoading : ''}`}>
           <CardContent imageUrl={imageUrl} text={text} />
         </div>
     );
 };
 
 Card.propTypes = {
-    imageUrl: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string,
+    text: PropTypes.string,
     href: PropTypes.string,
-};
-Card.defaultProps = {
-    imageUrl: "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/accommodation-20-1.jpg",
-    text: "Appartement cosy",
+    loading: PropTypes.bool
 };
 
+export const CardLoading = () => {
+    return (
+        <div className={`${styles.card} ${styles.cardLoading}`}>
+
+        </div>
+    )
+}
 /**
  * La fonction CardContent renvoie une image, un arrière-plan sombre et un paragraphe de texte.
  * @returns Le composant `CardContent` renvoie un fragment JSX qui contient un élément `img` avec un
@@ -45,7 +49,7 @@ const CardContent = ({ imageUrl, text }) => {
             <div className={styles.bgDark}></div>
             <p className={styles.text}>{text}</p>
         </>
-    );
+    )
 };
 CardContent.propTypes = {
   imageUrl: PropTypes.string,

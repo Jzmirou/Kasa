@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import styles from "./Gallery.module.scss";
-import { Card } from "../../Molecules/Card/Card";
+import { Card, CardLoading } from "../../Molecules/Card/Card";
 import { cacheLogement } from "../../../helper/cacheLogement";
 import { defer, useLoaderData, Await } from "react-router-dom";
 import { getAllLogement } from "../../../helper/api";
@@ -15,13 +15,13 @@ import { LoadingSpinner } from "../../Atoms/LoadingSpinner/LoadingSpinner";
  * valeur de `i`, une prop `href`
  */
 export const Gallery = () => {
-    const {updateCache} = cacheLogement();
+    const { updateCache } = cacheLogement();
     const logementData = useLoaderData();
     return (
-        <Suspense fallback={<LoadingSpinner/>}>
+        <Suspense fallback={<GalleryLoading />}>
             <Await resolve={logementData.data} errorElement={<p>Error</p>}>
                 {(logementData) => {
-                        updateCache(logementData);
+                    updateCache(logementData);
                     return (
                         <div className={styles.gallery}>
                             {logementData.map((logement, i) => {
@@ -35,6 +35,18 @@ export const Gallery = () => {
     );
 };
 
+export const GalleryLoading = () => {
+    return (
+        <div className={styles.gallery}>     
+            <CardLoading />
+            <CardLoading />
+            <CardLoading />
+            <CardLoading />
+            <CardLoading />
+            <CardLoading />
+        </div>
+    );
+};
 /**
  * Cette fonction charge les données à partir d'un cache ou d'un point de terminaison d'API et les
  * renvoie.
@@ -47,10 +59,10 @@ export const loader = ({ request }) => {
     if (cache.size > 1) {
         const data = [];
         cache.forEach((value) => {
-            data.push(value)
+            data.push(value);
         });
-        console.log('data used cache')
-        return {data: data}
+        console.log("data used cache");
+        return { data: data };
     }
     const data = getAllLogement({
         signal: request.signal,

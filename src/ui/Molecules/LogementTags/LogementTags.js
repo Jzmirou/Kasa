@@ -1,6 +1,6 @@
 import React from "react";
-import { Badge } from "../../Atoms/Badge/Badge";
-import styles from "./LogementTags.module.scss"
+import { Badge, BadgeLoading } from "../../Atoms/Badge/Badge";
+import styles from "./LogementTags.module.scss";
 import PropTypes from "prop-types";
 
 /**
@@ -19,5 +19,13 @@ export const LogementTags = ({ tags }) => {
     );
 };
 LogementTags.propTypes = {
-    tags: PropTypes.arrayOf(PropTypes.string).isRequired
+    tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+
+export const LogementTagsLoading = () => {
+    return <div className={styles.tags}>
+        <BadgeLoading/>
+        <BadgeLoading/>
+        <BadgeLoading/>
+    </div>;
 };

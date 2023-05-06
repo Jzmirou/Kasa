@@ -1,6 +1,6 @@
-import React from 'react'
-import styles from "./Avatar.module.scss"
-import PropTypes from "prop-types"
+import React from "react";
+import styles from "./Avatar.module.scss";
+import PropTypes from "prop-types";
 
 /**
  * Il s'agit d'un composant React appelé Avatar qui affiche une image s'il est fourni comme accessoire.
@@ -9,15 +9,13 @@ import PropTypes from "prop-types"
  * `image` et un attribut `alt` de "avatar du propriétaire" est également rendu à l'intérieur de la
  * `div` . Si l'"image"
  */
-export const Avatar = ({image}) => {
-  return (
-    <div className={styles.avatar}>
-        {
-            image ? <img src={image} alt="avatar du propriétaire" /> : null
-        }
-    </div>
-  )
-}
+export const Avatar = ({ image }) => {
+    return <div className={styles.avatar}>{image ? <img src={image} alt="avatar du propriétaire" /> : null}</div>;
+};
 Avatar.propTypes = {
-  image: PropTypes.string.isRequired
-}
+    image: PropTypes.string.isRequired,
+};
+
+export const AvatarLoading = () => {
+    return <div className={`${styles.avatar} ${styles.avatarLoading}`}></div>;
+};

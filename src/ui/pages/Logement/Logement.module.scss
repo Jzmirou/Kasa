@@ -21,6 +21,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 0.25rem;
     @include md {
         flex-direction: column-reverse;
         align-items: flex-end;
@@ -42,28 +43,5 @@
         gap: clamp(2rem, 5vw, 4.75rem);
     }
 }
-.titleContainer {
-    display: grid;
-    gap: 0.3125rem;
-}
 
-.title {
-    font-size: var(--fs-mobile-600, 1.125rem);
-    line-height: 1.625rem;
-    @include md {
-        font-size: var(--fs-desktop-600, 2.25rem);
-        line-height: 2.25rem;
-    }
-}
-.subtitle {
-    font-size: var(--fs-mobile-500);
-    line-height: 1.25rem;
-    @include md {
-        line-height: normal;
-        font-size: var(--fs-desktop-400);
-    }
-}
-.title,
-.subtitle {
-    font-weight: 500;
-}
+

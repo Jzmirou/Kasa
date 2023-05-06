@@ -1,7 +1,7 @@
 import React from "react";
 import imageBannerWebp from "../../../assets/images/banner1.webp";
 import imageBannerJpg from "../../../assets/images/banner1.jpg";
-import styles from './BannerImage.module.scss'
+import styles from "./BannerImage.module.scss";
 import PropTypes from "prop-types";
 
 const imageBanner = {
@@ -16,8 +16,8 @@ const imageBanner = {
  */
 export const BannerImage = ({ imageUrl, alt, text, subtext }) => {
     const images = [];
-    const isMultipleUrl = typeof imageUrl !== 'string'
-    const urls = isMultipleUrl ? [...imageUrl] : [imageUrl]
+    const isMultipleUrl = typeof imageUrl !== "string";
+    const urls = isMultipleUrl ? [...imageUrl] : [imageUrl];
     return (
         <div className={styles.bannerImage}>
             <picture className={styles.imageContainer}>
@@ -29,7 +29,13 @@ export const BannerImage = ({ imageUrl, alt, text, subtext }) => {
                 <img src={getBaseImage(images)} className={styles.image} alt={alt} />
             </picture>
             <div className={styles.bgDark}></div>
-            {text ? <h1 className={styles.text}>{text}<br className={styles.br}/>{subtext}</h1> : null}
+            {text ? (
+                <h1 className={styles.text}>
+                    {text}
+                    <br className={styles.br} />
+                    {subtext}
+                </h1>
+            ) : null}
         </div>
     );
 };
@@ -38,7 +44,7 @@ BannerImage.defaultProps = {
     imageUrl: imageBanner.imagesUrl,
     alt: imageBanner.alt,
     text: "Chez vous, ",
-    subtext: "partout et ailleurs"
+    subtext: "partout et ailleurs",
 };
 BannerImage.propTypes = {
     image: PropTypes.shape({
@@ -46,9 +52,12 @@ BannerImage.propTypes = {
         imagesUrl: PropTypes.arrayOf(PropTypes.string.isRequired),
     }),
     text: PropTypes.string,
-    subtext: PropTypes.string
+    subtext: PropTypes.string,
 };
 
+export const BannerImageLoading = () => {
+    return <div className={`${styles.bannerImage} ${styles.bannerImageLoading}`}></div>;
+};
 /**
  * La fonction renvoie l'extensions de l'image de base à partir d'un tableau d'images en fonction de la
  * priorité des extensions de fichier.

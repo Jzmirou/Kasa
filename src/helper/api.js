@@ -22,7 +22,7 @@ const fetchJson = async (option) => {
     try {
         const response = await fetch(`${window.location.origin}/logements.json`, { ...option });
         const data = await response.json();
-        // await stop(1);
+        // await stop(2);
         return data;
     } catch (error) {
         console.error(error);

@@ -1,0 +1,50 @@
+@use "../../../sass/abstracts" as *;
+
+@keyframes shine {
+    to {
+        background-position-x: -200%;
+    }
+}
+.titleContainer {
+    display: grid;
+    gap: 0.3125rem;
+}
+.titleContainerLoading {
+    > * {
+        background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+        background-size: 200% 100%;
+        animation: 1s shine linear infinite;
+    }
+    .title {
+        height: 1.625rem;
+        @include md {
+            height: 2rem;
+        }
+    }
+    .subtitle {
+        height: 1.25rem;
+        @include md {
+            height: 1.375rem;
+        }
+    }
+}
+.title {
+    font-size: var(--fs-mobile-600, 1.125rem);
+    line-height: 1.625rem;
+    @include md {
+        font-size: var(--fs-desktop-600, 2.25rem);
+        line-height: 2.25rem;
+    }
+}
+.subtitle {
+    font-size: var(--fs-mobile-500);
+    line-height: 1.25rem;
+    @include md {
+        line-height: normal;
+        font-size: var(--fs-desktop-400);
+    }
+}
+.title,
+.subtitle {
+    font-weight: 500;
+}

@@ -12,8 +12,14 @@ import PropTypes from "prop-types"
 export const Badge = ({text}) => {
   return (
     <div className={styles.badge}>{text}</div>
+    )
+  }
+  Badge.propTypes = {
+    text: PropTypes.string.isRequired
+  }
+  
+  export const BadgeLoading = () => {
+    return (
+    <div className={styles.badgeLoading}></div>
   )
-}
-Badge.propTypes = {
-  text: PropTypes.string.isRequired
 }

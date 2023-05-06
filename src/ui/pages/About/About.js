@@ -1,8 +1,8 @@
 import React from "react";
-import { BannerImage } from "../../Molecules/BannerImage/BannerImage";
+import { BannerImage, BannerImageLoading } from "../../Molecules/BannerImage/BannerImage";
 import ImageBanner from "../../../assets/images/banner2.webp";
-import { Collapse } from "../../Molecules/Collapse/Collapse";
-import styles from './About.module.scss'
+import { Collapse, CollapseLoading } from "../../Molecules/Collapse/Collapse";
+import styles from "./About.module.scss";
 
 const aboutItems = [
     {
@@ -36,14 +36,24 @@ export const About = () => {
     return (
         <div className={styles.about}>
             <BannerImage text={null} imageUrl={ImageBanner} />
-           {aboutItems.map(item => {
-              return(
-                 <Collapse title={item.title} key={item.id}>
-                    {item.text}
-                 </Collapse>
-                 )
+            {aboutItems.map((item) => {
+                return (
+                    <Collapse title={item.title} key={item.id}>
+                        {item.text}
+                    </Collapse>
+                );
+            })}
+        </div>
+    );
+};
 
-           })}
+export const AboutLoading = () => {
+    return (
+        <div className={styles.about}>
+            <BannerImageLoading />
+            {aboutItems.map((item) => {
+                return <CollapseLoading key={item.id}/>;
+            })}
         </div>
     );
 };

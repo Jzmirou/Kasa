@@ -1,5 +1,11 @@
 @use "../../../sass/abstracts" as *;
 
+@keyframes shine {
+    to {
+        background-position-x: -200%;
+    }
+}
+
 .carousel {
     position: relative;
     border-radius: var(--br-400, 0.625rem);
@@ -9,6 +15,14 @@
     height: 16rem;
     @include md {
         height: 26rem ;
+    }
+}
+.carouselLoading {
+    background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+    background-size: 200% 100%;
+    animation: 1s shine linear infinite;
+    > * {
+        display: none;
     }
 }
 

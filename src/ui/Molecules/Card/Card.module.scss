@@ -11,6 +11,18 @@
         height: 21.25rem;
     }
 }
+.cardLoading {
+        background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+        background-size: 200% 100%;
+        animation: 1s shine linear infinite;
+        > * {
+           display: none;
+        }
+        .bgDark {
+            display: block;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.2) 100%);
+        }
+}
 .image {
     object-fit: cover;
     position: absolute;
@@ -30,4 +42,9 @@
     inset: 0;
     z-index: 2;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+}
+@keyframes shine {
+    to {
+        background-position-x: -200%;
+    }
 }
