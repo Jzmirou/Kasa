@@ -1,9 +1,9 @@
 
 
-const stop = (seconde) =>
+export const stop = (seconde) =>
     new Promise((resolve) => {
         const time = seconde * 1000
-        setTimeout(resolve, seconde);
+        setTimeout(() => resolve(), time);
     });
 
 /**
@@ -22,7 +22,7 @@ const fetchJson = async (option) => {
     try {
         const response = await fetch(`${window.location.origin}/logements.json`, { ...option });
         const data = await response.json();
-        await stop(0.8);
+        // await stop(1);
         return data;
     } catch (error) {
         console.error(error);
@@ -59,5 +59,6 @@ export const getLogementById = async (id, option) => {
     const response = await fetchJson(option)
     const data = response.find((logement) => logement.id === id);
     if (!data) throw new Response("Not Found", {status: 400})
+
     return data
 };

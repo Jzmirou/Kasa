@@ -4,6 +4,7 @@ import { Card } from "../../Molecules/Card/Card";
 import { cacheLogement } from "../../../helper/cacheLogement";
 import { defer, useLoaderData, Await } from "react-router-dom";
 import { getAllLogement } from "../../../helper/api";
+import { LoadingSpinner } from "../../Atoms/LoadingSpinner/LoadingSpinner";
 
 /**
  * Le composant Gallery affiche une collection de composants Card basés sur les données extraites de
@@ -17,7 +18,7 @@ export const Gallery = () => {
     const {updateCache} = cacheLogement();
     const logementData = useLoaderData();
     return (
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense fallback={<LoadingSpinner/>}>
             <Await resolve={logementData.data} errorElement={<p>Error</p>}>
                 {(logementData) => {
                         updateCache(logementData);
