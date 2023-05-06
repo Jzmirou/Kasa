@@ -1,10 +1,10 @@
 import React, { Suspense } from "react";
 import styles from "./Gallery.module.scss";
-import { Card, CardLoading } from "../../Molecules/Card/Card";
+import { Card} from "../../Molecules/Card/Card";
 import { cacheLogement } from "../../../helper/cacheLogement";
 import { defer, useLoaderData, Await } from "react-router-dom";
 import { getAllLogement } from "../../../helper/api";
-import { LoadingSpinner } from "../../Atoms/LoadingSpinner/LoadingSpinner";
+import {GalleryLoading} from './GalleryLoading'
 
 /**
  * Le composant Gallery affiche une collection de composants Card basés sur les données extraites de
@@ -35,18 +35,7 @@ export const Gallery = () => {
     );
 };
 
-export const GalleryLoading = () => {
-    return (
-        <div className={styles.gallery}>     
-            <CardLoading />
-            <CardLoading />
-            <CardLoading />
-            <CardLoading />
-            <CardLoading />
-            <CardLoading />
-        </div>
-    );
-};
+
 /**
  * Cette fonction charge les données à partir d'un cache ou d'un point de terminaison d'API et les
  * renvoie.

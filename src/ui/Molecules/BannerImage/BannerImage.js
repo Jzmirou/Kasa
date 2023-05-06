@@ -55,9 +55,7 @@ BannerImage.propTypes = {
     subtext: PropTypes.string,
 };
 
-export const BannerImageLoading = () => {
-    return <div className={`${styles.bannerImage} ${styles.bannerImageLoading}`}></div>;
-};
+
 /**
  * La fonction renvoie l'extensions de l'image de base à partir d'un tableau d'images en fonction de la
  * priorité des extensions de fichier.

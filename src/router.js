@@ -1,12 +1,13 @@
-import { createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
-import { loader as logementLoader, LogementLoading } from "./ui/pages/Logement/Logement";
-import { Gallery, loader as galleryLoader } from "./ui/Organisms/Gallery/Gallery";
-import { Layout } from "./ui/Layout/Layout";
 import { Suspense, lazy } from "react";
+import { createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
+import { loader as logementLoader} from "./ui/pages/Logement/Logement";
+import { Layout } from "./ui/Layout/Layout";
 import { LoadingSpinner } from "./ui/Atoms/LoadingSpinner/LoadingSpinner";
 import { stop } from "./helper/api";
-import { HomeLoading } from "./ui/pages/Home/Home";
-import { AboutLoading } from "./ui/pages/About/About";
+import { Gallery, loader as galleryLoader } from "./ui/Organisms/Gallery/Gallery";
+import { LogementLoading } from "./ui/pages/Logement/LogementLoading";
+import { HomeLoading } from "./ui/pages/Home/HomeLoading";
+import { AboutLoading } from "./ui/pages/About/AboutLoading";
 
 
 
@@ -34,6 +35,13 @@ utilisé pour naviguer entre les différentes routes. */
 //         };
 //     })
 // );
+// const About = lazy(() =>
+//     import("./ui/pages/About/About").then((module) => {
+//         return {
+//             default: module.About,
+//         };
+//     })
+// );
 
 const Home = lazy(() =>
     stop(0.8).then(() => import("./ui/pages/Home/Home").then((module) => {
@@ -56,13 +64,6 @@ const About = lazy(() =>
         };
     }))
 );
-// const About = lazy(() =>
-//     import("./ui/pages/About/About").then((module) => {
-//         return {
-//             default: module.About,
-//         };
-//     })
-// );
 const Erreur404 = lazy(() =>
     import("./ui/pages/Erreur404/Erreur404").then((module) => {
         return {

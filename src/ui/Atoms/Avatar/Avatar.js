@@ -16,6 +16,3 @@ Avatar.propTypes = {
     image: PropTypes.string.isRequired,
 };
 
-export const AvatarLoading = () => {
-    return <div className={`${styles.avatar} ${styles.avatarLoading}`}></div>;
-};

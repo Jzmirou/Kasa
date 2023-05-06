@@ -29,13 +29,7 @@ Card.propTypes = {
     loading: PropTypes.bool
 };
 
-export const CardLoading = () => {
-    return (
-        <div className={`${styles.card} ${styles.cardLoading}`}>
 
-        </div>
-    )
-}
 /**
  * La fonction CardContent renvoie une image, un arrière-plan sombre et un paragraphe de texte.
  * @returns Le composant `CardContent` renvoie un fragment JSX qui contient un élément `img` avec un

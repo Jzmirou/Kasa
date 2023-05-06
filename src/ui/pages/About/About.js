@@ -1,7 +1,7 @@
 import React from "react";
-import { BannerImage, BannerImageLoading } from "../../Molecules/BannerImage/BannerImage";
+import { BannerImage } from "../../Molecules/BannerImage/BannerImage";
+import { Collapse } from "../../Molecules/Collapse/Collapse";
 import ImageBanner from "../../../assets/images/banner2.webp";
-import { Collapse, CollapseLoading } from "../../Molecules/Collapse/Collapse";
 import styles from "./About.module.scss";
 
 const aboutItems = [
@@ -47,13 +47,3 @@ export const About = () => {
     );
 };
 
-export const AboutLoading = () => {
-    return (
-        <div className={styles.about}>
-            <BannerImageLoading />
-            {aboutItems.map((item) => {
-                return <CollapseLoading key={item.id}/>;
-            })}
-        </div>
-    );
-};

@@ -34,6 +34,3 @@ Rating.propTypes = {
     rate: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     maxRate: PropTypes.number,
 };
-export const RatingLoading = () => {
-    return <div className={styles.ratingLoading}></div>;
-};

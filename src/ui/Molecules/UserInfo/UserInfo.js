@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, AvatarLoading } from "../../Atoms/Avatar/Avatar";
+import { Avatar } from "../../Atoms/Avatar/Avatar";
 import styles from "./UserInfo.module.scss";
 import PropTypes from "prop-types";
 
@@ -30,16 +30,4 @@ UserInfo.propTypes = {
 };
 UserInfo.defaultProps = {
     name: "josé garcia",
-};
-
-export const UserInfoLoading = () => {
-  return(
-    <div className={`${styles.userInfo} ${styles.userInfoLoading}`}>
-        <div className={styles.name}>
-          <p></p>
-          <p></p>
-        </div>
-        <AvatarLoading />
-    </div>
-  )
 };

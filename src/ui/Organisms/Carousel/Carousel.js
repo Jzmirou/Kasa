@@ -70,10 +70,5 @@ Carousel.propTypes = {
    autoPlay: PropTypes.bool
 };
 
-export const CarouselLoading = () => {
-    return (
-        <div className={`${styles.carousel} ${styles.carouselLoading}`}>
-        </div>
-    )
-}
+
 

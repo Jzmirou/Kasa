@@ -34,6 +34,3 @@ Collapse.propTypes = {
     title: PropTypes.string.isRequired,
 };
 
-export const CollapseLoading = () => {
-    return <div className={styles.collapseLoading}></div>;
-};

@@ -2,14 +2,15 @@ import React, { Suspense } from "react";
 import { Await, defer, useLoaderData } from "react-router-dom";
 import { getLogementById } from "../../../helper/api";
 import { cacheLogement } from "../../../helper/cacheLogement";
-import { Carousel, CarouselLoading } from "../../Organisms/Carousel/Carousel";
-import { Collapse, CollapseLoading } from "../../Molecules/Collapse/Collapse";
-import { Rating, RatingLoading } from "../../Molecules/Rating/Rating";
-import { UserInfo, UserInfoLoading } from "../../Molecules/UserInfo/UserInfo";
-import { LogementTags, LogementTagsLoading } from "../../Molecules/LogementTags/LogementTags";
+import { Carousel } from "../../Organisms/Carousel/Carousel";
+import { Collapse} from "../../Molecules/Collapse/Collapse";
+import { Rating } from "../../Molecules/Rating/Rating";
+import { UserInfo } from "../../Molecules/UserInfo/UserInfo";
+import { LogementTitle } from "../../Molecules/LogementTitle/LogementTitle";
+import { LogementTags } from "../../Molecules/LogementTags/LogementTags";
+import { LogementLoading} from "./LogementLoading"
 import styles from "./Logement.module.scss";
 import { Erreur404 } from "../Erreur404/Erreur404";
-import { LogementTitle, LogementTitleLoading } from "../../Molecules/LogementTitle/LogementTitle";
 
 /**
  * La fonction Logement renvoie un composant qui affiche des informations sur un logement, notamment
@@ -77,26 +78,4 @@ export const loader = async ({ params, request }) => {
     });
     console.log("data used non cache");
     return defer({ data: data });
-};
-
-export const LogementLoading = () => {
-    return (
-        <div className={styles.logement}>
-            <CarouselLoading />
-            <div className={styles.logementBody}>
-                <div className={styles.logementInfo}>
-                    <LogementTitleLoading />
-                    <LogementTagsLoading/>
-                </div>
-                <div className={styles.rateAndUser}>
-                    <RatingLoading/>
-                    <UserInfoLoading />
-                </div>
-                <div className={styles.logementCollapse}>
-                    <CollapseLoading/>
-                    <CollapseLoading/>
-                </div>
-            </div>
-        </div>
-    );
 };
