@@ -12,25 +12,38 @@ export const Collapse = ({ children, title }) => {
     const [visible, setVisible] = useState(false);
     const body = useRef(null);
     const toggleOpen = () => {
-        visible ? (body.current.style.maxHeight = 0) : (body.current.style.maxHeight = body.current.scrollHeight + "px");
+        visible
+            ? (body.current.style.maxHeight = 0)
+            : (body.current.style.maxHeight = body.current.scrollHeight + "px");
         setVisible(!visible);
     };
     return (
         <div className={styles.collapse}>
             <label className={styles.collapseHeader}>
                 <h2 className={styles.title}>{title}</h2>
-                <button onClick={toggleOpen} className={`${styles.button} ${!visible ? styles.buttonActive : ""}`}>
+                <button
+                    onClick={toggleOpen}
+                    className={`${styles.button} ${
+                        !visible ? styles.buttonActive : ""
+                    }`}
+                >
                     <Arrow />
                 </button>
             </label>
-            <div ref={body} className={`${styles.collapseBody}`} style={{ maxHeight: 0 }}>
+            <div
+                ref={body}
+                className={`${styles.collapseBody}`}
+                style={{ maxHeight: 0 }}
+            >
                 <p>{children}</p>
             </div>
         </div>
     );
 };
 Collapse.propTypes = {
-    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.string]).isRequired,
+    children: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.node),
+        PropTypes.string,
+    ]).isRequired,
     title: PropTypes.string.isRequired,
 };
-

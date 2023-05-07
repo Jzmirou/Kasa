@@ -10,9 +10,12 @@ import PropTypes from "prop-types";
  * `div` . Si l'"image"
  */
 export const Avatar = ({ image }) => {
-    return <div className={styles.avatar}>{image ? <img src={image} alt="avatar du propriétaire" /> : null}</div>;
+    return (
+        <div className={styles.avatar}>
+            {image ? <img src={image} alt="avatar du propriétaire" /> : null}
+        </div>
+    );
 };
 Avatar.propTypes = {
-    image: PropTypes.string.isRequired,
+    image: PropTypes.string,
 };
-

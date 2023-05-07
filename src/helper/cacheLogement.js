@@ -16,7 +16,6 @@ export const cacheLogement = () => {
     const removeCache = (id) => {
         cache.delete(id)
     }
-
     return {
         cache,
         updateCache,

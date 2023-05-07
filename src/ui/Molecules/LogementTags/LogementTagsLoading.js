@@ -6,6 +6,5 @@ export const LogementTagsLoading = () => {
     return <div className={styles.tags}>
         <BadgeLoading/>
         <BadgeLoading/>
-        <BadgeLoading/>
     </div>;
 };

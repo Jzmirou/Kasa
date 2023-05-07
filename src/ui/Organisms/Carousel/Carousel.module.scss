@@ -58,3 +58,14 @@
         transform: rotate(-180deg);
     }
 }
+.count {
+    display: none;
+    font-weight: 500;
+    color: var(--text-white);
+    position: absolute;
+    bottom: 1rem;
+    right: 50%;
+    @include md {
+        display: block;
+    }
+}

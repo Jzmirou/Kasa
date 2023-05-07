@@ -38,12 +38,16 @@ export const Carousel = ({ images, autoPlay = false }) => {
         <div className={styles.carousel}>
             {images?.map((image, index) => {
                 return (
-                    <div key={index} style={{ transform: `translateX(-${activeIndex * 100}%)` }} className={styles.carouselItem}>
+                    <div key={index} 
+                        style={{ transform: `translateX(-${activeIndex * 100}%)` }} 
+                        className={styles.carouselItem}>
                         <img src={image} alt="description visuelle du logement" />
                     </div>
                 );
             })}
-            <div className={styles.btnCarousel}>
+            { carouselLength > 1 && 
+                <>
+                 <div className={styles.btnCarousel}>
                 <button
                     className={styles.prev}
                     onClick={() => {
@@ -61,6 +65,9 @@ export const Carousel = ({ images, autoPlay = false }) => {
                     <Arrow />
                 </button>
             </div>
+            <div className={styles.count}>{`${activeIndex + 1}/${carouselLength}`}</div>
+            </> 
+        }
         </div>
     );
 };

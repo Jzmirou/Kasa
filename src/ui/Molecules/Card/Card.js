@@ -21,7 +21,6 @@ export const Card = ({ imageUrl, text, href, loading = false}) => {
         </div>
     );
 };
-
 Card.propTypes = {
     imageUrl: PropTypes.string,
     text: PropTypes.string,

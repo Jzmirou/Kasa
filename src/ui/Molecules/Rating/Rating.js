@@ -29,7 +29,6 @@ export const Rating = ({ rate, maxRate = 5 }) => {
         </div>
     );
 };
-
 Rating.propTypes = {
     rate: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     maxRate: PropTypes.number,
